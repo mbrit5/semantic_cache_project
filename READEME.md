@@ -53,42 +53,40 @@ I had to look into the different vector database options, such as chroma DB, Fai
 * **LLM Calls Avoided** - Number of API calls saved
 
 ###  Cache Metrics
+- Total Calls: 4
+- Cache Hits: 2
+- Cache Misses: 2
+- LLM Calls Made: 2
+- Cache Hit Rate: 50.00%
+- Average Latency: 5585.94 ms
 
-Total Calls: 4
-Cache Hits: 2
-Cache Misses: 2
-LLM Calls Made: 2
-Cache Hit Rate: 50.00%
-Average Latency: 5585.94 ms
-======================
 ### What does this mean?
 The Cache metrics indicate how the average latency is around 5.5 seconds. It also shows the cache reduced the reduntant API calls, which means it improved the systems performance. 
 
 ## Results
 ### Test 1 (Miss)
-Query Text: "What is the impact of climate change on corn yields?"
-Similarity Score: N/A
-Cache: Miss
-Latency: 16.87 s
+* Query Text: "What is the impact of climate change on corn yields?"
+* Similarity Score: N/A
+* Cache: Miss
+* Latency: 16.87 s
 
 ### Test 2 (Hit)
-Query Text: "How does global warming affect maize productivity?"
-Similarity Score: 0.8170	
-Cache: Hit
-Latency 0.22 s
+* Query Text: "How does global warming affect maize productivity?"
+* Similarity Score: 0.8170	
+* Cache: Hit
+* Latency 0.22 s
 
 ### Test 3 (Hit)
-Query Text: "What were the average yields in Iowa last year?"
-Similarity Score: 0.8303	
-Cache: Hit
-Latency 0.29 s
+* Query Text: "What were the average yields in Iowa last year?"
+* Similarity Score: 0.8303	
+* Cache: Hit
+* Latency 0.29 s
 
 ### Test 3 (Miss)
-Query Text: "What is the primary export from the American Midwest?"
-Similarity Score: 0.5330		
-Cache: Miss
-Latency 4.96 s
-
+* Query Text: "What is the primary export from the American Midwest?"
+* Similarity Score: 0.5330		
+* Cache: Miss
+* Latency 4.96 s
 
 ## Trade-offs
 ### Threshold 
@@ -104,12 +102,20 @@ My code implements a Least Recently Used (LRU) policy to manage the cache size (
 
 
 ## Conclusion
+The developed Semantic Caching POS successfully achieves its core objective.
+
+It demonstrated improvement by:
+1. Reducing Redundant LLM Calls: Achieving a 50% reduction in LLM API calls during the test
+2. Improving Response Latency: Accessed cached responses in milliseconds (0.22 s) in comparison to LLM that took seconds(16.87 s)
+3. Maintaining Context: The context-aware embedding strategy ensures semantic matches are relevant
 
 ## Bonus
-### 1. 
+### 1. Embeddings
+- 
 
+### 2. Part A: Limitations
+- At the moment the chat history is compiled into one context key, but if it comes across a long chat the embedding becomes complex. This makes it harder to find an accurate semantic match, cache context is lost
+- Once a user changes topics the cache may be overloaded with previous information that when asked a new topic it may give an incorrect answer due to the data stored for context.
 
-### 2. Part A
-
-
-### 2. Part B
+### 2. Part B: AI Agents
+- When it comes to agents caching only responses is not as helpful, we must look into caching actions such as running a complex database queries, API lookups or file reads
