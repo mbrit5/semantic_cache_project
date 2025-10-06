@@ -1,0 +1,7 @@
+# .gitignore
+
+# 1. Hide the file containing the actual secret keys
+.env
+
+# 2. Hide the virtual environment folder
+venv/
