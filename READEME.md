@@ -19,7 +19,7 @@ This project was an opportunity to learn how embeddings, caching, and LLM work t
 ## Setup Instructions
 ### 1 Clone Repository
 ```bash
-git clone https://github.com/<mbrit5>/semantic-cache-.git
+git clone https://github.com/mbrit5/semantic_cache_project-.git
 cd semantic_caching_project
 ```
 ### 2 Install Dependencies
@@ -52,7 +52,8 @@ I had to look into the different vector database options, such as chroma DB, Fai
 * **Cache Hit Rate (%)** - Percentage of queries served from cache
 * **LLM Calls Avoided** - Number of API calls saved
 
-=== Cache Metrics ===
+###  Cache Metrics
+
 Total Calls: 4
 Cache Hits: 2
 Cache Misses: 2
